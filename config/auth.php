@@ -112,4 +112,9 @@ return [
 
     'password_timeout' => 10800,
 
+    'validations' => [
+        'errors' => [
+            'message' => env('VALIDATION_ERROR_MESSAGE'),
+        ]
+    ],
 ];
