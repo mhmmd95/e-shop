@@ -20,9 +20,6 @@ return new class extends Migration
 
             $table->string('title', 100);
             $table->text('description');
-            $table->morphs('professionable');
-
-            $table->index(['professionable_id', 'professionable_type'], 'morphs_professionable_foreign_key');
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
