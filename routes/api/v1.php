@@ -2,7 +2,8 @@
 
 declare (strict_types = 1);
 
-use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\Customer;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(function() {
@@ -19,4 +20,9 @@ Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(fun
         Route::post('/logout', 'logout')->name('logout');
         Route::post('/logout-all-sessions', 'logoutAll')->name('logoutAll');
     });
+});
+
+Route::middleware('auth:sanctum')->as('customers:')->prefix('customers')->group(function(){
+
+    Route::post('/', Customer\StoreController::class)->name('store');
 });
