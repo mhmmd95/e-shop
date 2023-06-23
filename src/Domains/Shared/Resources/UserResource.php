@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace Domains\Customer\Resources;
+namespace Domains\Shared\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -12,10 +12,12 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'uuid' => $this->uuid,
+            'id' => $this->uuid,
             'type' => 'user',
-            'username' => $this->username,
-            'email' => $this->email
+            'attributes' => [
+                'username' => $this->username,
+                'email' => $this->email
+            ],
         ];
     }
 }

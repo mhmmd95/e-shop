@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domains\Customer\Actions;
+namespace Domains\Shared\Actions\Auth;
 
-use App\Exceptions\AuthenticationPasswordException;
-use Domains\Customer\Models\User;
+use Domains\Shared\Exceptions\AuthenticationPasswordException;
+use Domains\Shared\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Infrastructure\ApiResponse;
 

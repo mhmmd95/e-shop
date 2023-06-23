@@ -1,8 +1,10 @@
 <?php
 
-namespace Domains\Customer\ValueObjects;
+declare (strict_types = 1);
 
-final class CustomerValueObject
+namespace Domains\Shared\ValueObjects;
+
+final class ProfessionValueObject
 {
     public function __construct(
         readonly public string $user,

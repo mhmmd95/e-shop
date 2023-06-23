@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domains\Customer\Services;
+namespace Domains\Shared\Services;
 
-use App\Exceptions\AuthenticationPasswordException;
-use Domains\Customer\Actions\CheckUserCredentials;
+use Domains\Shared\Exceptions\AuthenticationPasswordException;
+use Domains\Shared\Actions\Auth\CheckUserCredentials;
 use Infrastructure\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use JustSteveKing\StatusCode\Http;

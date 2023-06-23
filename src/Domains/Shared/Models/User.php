@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace Domains\Customer\Models;
+namespace Domains\Shared\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 

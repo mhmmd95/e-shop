@@ -2,9 +2,9 @@
 
 declare (strict_types = 1 );
 
-namespace Domains\Customer\Actions;
+namespace Domains\Shared\Actions\Auth;
 
-use Domains\Customer\Models\User;
+use Domains\Shared\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterUser {
