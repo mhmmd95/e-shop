@@ -1,6 +1,6 @@
 <?php
 
-use Domains\Customer\Models\Profession;
+use Domains\Shared\Models\Profession;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

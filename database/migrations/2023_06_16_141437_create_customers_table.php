@@ -2,8 +2,8 @@
 
 declare (strict_types = 1);
 
-use Domains\Customer\Models\Profession;
-use Domains\Customer\Models\User;
+use Domains\Shared\Models\Profession;
+use Domains\Shared\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

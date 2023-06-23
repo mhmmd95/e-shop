@@ -6,10 +6,9 @@ namespace App\Http\Controllers\Api\V1\Customer;
 
 use App\Http\Requests\Api\V1\Customer\StoreCustomerRequest;
 use Domains\Customer\Actions\Customer\CreateCustomer;
-use Domains\Customer\Factories\CustomerFactory;
+use Domains\Shared\Factories\ProfessionFactory;
 use App\Http\Controllers\Controller;
 use JustSteveKing\StatusCode\Http;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 use Infrastructure\ApiResponse;
 
@@ -19,19 +18,16 @@ class StoreController extends Controller
 
     public function __invoke(StoreCustomerRequest $request): JsonResponse
     {
-        $customerVo = CustomerFactory::make($request->validated());
+        $customerVo = ProfessionFactory::make($request->validated());
 
-        return DB::transaction(function() use ($customerVo) {
+        CreateCustomer::handle(
+            customerVo: $customerVo
+        );
 
-            CreateCustomer::handle(
-                customerVO: $customerVo
-            );
+        return $this->handle_success(
+            data: null,
+            code: Http::ACCEPTED->value
+        );
 
-            return $this->handle_success(
-                data: null,
-                code: Http::ACCEPTED->value
-            );
-
-        });
     }
 }

@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace Database\Factories;
 
-use Domain\Customer\Models\User;
+use Domains\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

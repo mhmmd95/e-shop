@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace Database\Factories;
 
-use Domain\Customer\Models\Profession;
+use Domains\Shared\Models\Profession;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProfessionFactory extends Factory
