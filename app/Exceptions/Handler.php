@@ -8,8 +8,10 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Infrastructure\ApiResponse;
+use Spatie\QueryBuilder\Exceptions\InvalidFilterQuery;
 use JustSteveKing\StatusCode\Http;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Spatie\QueryBuilder\Exceptions\InvalidIncludeQuery;
 use Throwable;
 
 final class Handler extends ExceptionHandler
@@ -45,6 +47,12 @@ final class Handler extends ExceptionHandler
 
             if( $e instanceof AuthenticationException)
                 return $this->handle_error(null, $e->getMessage(), Http::UNAUTHORIZED->value);
+
+            if( $e instanceof InvalidFilterQuery)
+                return $this->handle_error(null, $e->getMessage());
+
+            if( $e instanceof InvalidIncludeQuery)
+                return $this->handle_error(null, $e->getMessage());
         }
 
         // Default exception rendering behavior
