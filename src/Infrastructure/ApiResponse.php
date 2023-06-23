@@ -7,10 +7,11 @@ namespace Infrastructure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\MessageBag;
 use JustSteveKing\StatusCode\Http;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 trait ApiResponse {
 
-    private function handle_success(array|string|null $data, string $message = 'sucess', int $code = Http::OK->value): JsonResponse {
+    private function handle_success(array|string|JsonResource|null $data, string $message = 'sucess', int $code = Http::OK->value): JsonResponse {
 
         return response()->json([
             'result' => true,
