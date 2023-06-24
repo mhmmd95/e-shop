@@ -19,7 +19,7 @@ class VendorResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'phone' => $this->phone,
-                'balance' => $this->balance,
+                'balance' => floatval($this->balance)
             ],
 
             'relationships' => [
