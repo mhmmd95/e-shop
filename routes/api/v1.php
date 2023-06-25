@@ -3,7 +3,7 @@
 declare (strict_types = 1);
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
-use App\Http\Controllers\Api\V1\{Customer, Vendor, Business};
+use App\Http\Controllers\Api\V1\{Customer, Vendor, Business, Category};
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(function() {
@@ -40,4 +40,9 @@ Route::middleware('auth:sanctum')->as('vendors:')->prefix('vendors')->group(func
         Route::get('/', Business\IndexController::class)->name('index');
         Route::get('/{business:uuid}', Business\ShowController::class)->name('show');
     });
+});
+
+
+Route::middleware('auth:sanctum')->as('categories:')->prefix('categories')->group(function(){
+    Route::post('/', Category\StoreController::class)->name('store');
 });

@@ -7,14 +7,14 @@ namespace Domains\Vendor\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BusinessResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->uuid,
 
-            'type' => 'business',
+            'type' => 'category',
 
             'attributes' => [
                 'name' => $this->name,
@@ -22,11 +22,11 @@ class BusinessResource extends JsonResource
             ],
 
             'relationships' => [
-                'categories' => CategoryResource::collection(
-                    resource: $this->whenLoaded(
-                        relationship: 'categories',
-                    ),
-                ),
+                // 'products' => ProductResource::collection(
+                //     resource: $this->whenLoaded(
+                //         relationship: 'products',
+                //     ),
+                // ),
             ],
         ];
     }

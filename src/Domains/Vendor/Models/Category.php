@@ -4,12 +4,12 @@ declare (strict_types = 1);
 
 namespace Domains\Vendor\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Domains\Shared\Models\Concerns\HasUuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Business extends Model
+class Category extends Model
 {
     use HasFactory, HasUuid;
 
@@ -17,15 +17,15 @@ class Business extends Model
         'uuid',
         'name',
         'description',
-        'vendor_id',
+        'business_id',
     ];
 
     protected $hidden = [
         'id'
     ];
 
-    public function categories(): HasMany
-    {
-        return $this->hasMany(Category::class);
-    }
+    // public function products(): HasMany
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 }

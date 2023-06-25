@@ -28,6 +28,12 @@ class VendorResource extends JsonResource
                         relationship: 'businesses',
                     ),
                 ),
+
+                // 'categories' => BusinessResource::collection(
+                //     resource: $this->whenLoaded(
+                //         relationship: 'categories',
+                //     ),
+                // ),
             ],
         ];
     }

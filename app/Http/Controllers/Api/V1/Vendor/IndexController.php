@@ -20,7 +20,7 @@ class IndexController extends Controller
         $vendors = QueryBuilder::for(
             subject: Vendor::class,
         )->allowedIncludes(
-            includes: ['businesses'],
+            includes: ['businesses.categories'],
         )->allowedFilters(
             filters: ['name', 'phone'],
         )->paginate();
