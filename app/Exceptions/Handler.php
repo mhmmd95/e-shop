@@ -1,22 +1,16 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Domains\Shared\Actions\Exception\JsonResponseExceptions;
+use Domains\Shared\Services\ExceptionService;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Infrastructure\ApiResponse;
-use Spatie\QueryBuilder\Exceptions\InvalidFilterQuery;
-use JustSteveKing\StatusCode\Http;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Spatie\QueryBuilder\Exceptions\InvalidIncludeQuery;
 use Throwable;
 
 final class Handler extends ExceptionHandler
 {
-    use ApiResponse;
 
     protected $dontFlash = [
         'current_password',
@@ -36,24 +30,8 @@ final class Handler extends ExceptionHandler
         // Check for a specific request header
         $checkAppJSONHeader = $request->header('Accept');
 
-        if ($checkAppJSONHeader === 'application/json') {
-            // Override the exception handling behavior based on the header value
-
-            if( $e instanceof ModelNotFoundException)
-                return $this->handle_error(null, 'Can\'t find your record!');
-
-            if( $e instanceof NotFoundHttpException)
-                return $this->handle_error(null, 'Wrong url, not found');
-
-            if( $e instanceof AuthenticationException)
-                return $this->handle_error(null, $e->getMessage(), Http::UNAUTHORIZED->value);
-
-            if( $e instanceof InvalidFilterQuery)
-                return $this->handle_error(null, $e->getMessage());
-
-            if( $e instanceof InvalidIncludeQuery)
-                return $this->handle_error(null, $e->getMessage());
-        }
+        if ($checkAppJSONHeader === 'application/json')
+            return resolve(ExceptionService::class)->handleJsonResponseExceptions(exception: $e);
 
         // Default exception rendering behavior
         return parent::render($request, $e);
