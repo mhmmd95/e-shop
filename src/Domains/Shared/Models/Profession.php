@@ -17,10 +17,12 @@ final class Profession extends Model
         'uuid',
         'title',
         'description',
+        'class',
     ];
 
     protected $hidden = [
         'id',
+        'class',
     ];
 
     protected static function newFactory()
