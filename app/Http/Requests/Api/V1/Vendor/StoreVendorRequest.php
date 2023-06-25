@@ -16,7 +16,7 @@ class StoreVendorRequest extends FormRequest
         return [
             'user' => ['required', 'uuid', 'exists:users,uuid'],
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'regex:^(+)([0-9]{10,15})'],
+            'phone' => ['nullable', 'regex:(\d{10,15})'],
             'balance' => ['nullable'],
         ];
     }

@@ -3,7 +3,7 @@
 declare (strict_types = 1);
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
-use App\Http\Controllers\Api\V1\{Customer, Vendor, Business, Category};
+use App\Http\Controllers\Api\V1\{Customer, Vendor, Business, Category, Profession};
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(function() {
@@ -22,6 +22,11 @@ Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(fun
     });
 });
 
+Route::prefix('users')->as('users:')->group(function() {
+
+    Route::delete('/{user:uuid}/professions', Profession\DestroyController::class);
+});
+
 Route::middleware('auth:sanctum')->as('customers:')->prefix('customers')->group(function(){
 
     Route::post('/', Customer\StoreController::class)->name('store');
@@ -32,6 +37,9 @@ Route::middleware('auth:sanctum')->as('vendors:')->prefix('vendors')->group(func
     //vendors route //TODO: continue adding vendor business routes.
     Route::post('/', Vendor\StoreController::class)->name('store');
     Route::get('/', Vendor\IndexController::class)->name('index');
+    Route::get('/{vendor:uuid}', Vendor\ShowController::class)->name('show');
+    Route::delete('/{vendor:uuid}', Vendor\DestroyController::class)->name('show');
+
 
     //vendor's businesses
     Route::as('businesses:')->prefix('/{vendor:uuid}/businesses')->group(function() {
