@@ -8,10 +8,13 @@ namespace Domains\Shared\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\UserFactory;
+use Domains\Customer\Models\Customer;
 use Illuminate\Notifications\Notifiable;
 use Domains\Shared\Models\Concerns\HasUuid;
+use Domains\Vendor\Models\Vendor;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 final class User extends Authenticatable
@@ -46,5 +49,15 @@ final class User extends Authenticatable
     public function profession(): BelongsTo
     {
         return $this->BelongsTo(Profession::class);
+    }
+
+    public function vendor(): HasOne{
+
+        return $this->hasOne(Vendor::class);
+    }
+
+    public function customer(): HasOne{
+
+        return $this->hasOne(Customer::class);
     }
 }

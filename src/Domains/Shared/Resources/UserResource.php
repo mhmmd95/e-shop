@@ -1,11 +1,12 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Domains\Shared\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Domains\Vendor\Resources\VendorResource;
+use Illuminate\Http\Request;
 
 class UserResource extends JsonResource
 {
@@ -13,10 +14,31 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->uuid,
+
             'type' => 'user',
+
             'attributes' => [
                 'username' => $this->username,
-                'email' => $this->email
+            ],
+
+            'relationships' => [
+                'profession' => new ProfessionResource(
+                    resource: $this->whenLoaded(
+                        relationship: 'profession',
+                    ),
+                ),
+
+                // 'customer' => new CustomerResource(
+                //     resource: $this->whenLoaded(
+                //         relationship: 'customer',
+                //     ),
+                // ),
+
+                'vendor' => new VendorResource(
+                    resource: $this->whenLoaded(
+                        relationship: 'vendor',
+                    ),
+                ),
             ],
         ];
     }

@@ -3,7 +3,7 @@
 declare (strict_types = 1);
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
-use App\Http\Controllers\Api\V1\{Customer, Vendor, Business, Category, Profession};
+use App\Http\Controllers\Api\V1\{User, Customer, Vendor, Business, Category, Profession};
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(function() {
@@ -24,6 +24,7 @@ Route::controller(AuthController::class)->prefix('auth')->as('auth:')->group(fun
 
 Route::prefix('users')->as('users:')->group(function() {
 
+    Route::get('/', User\IndexController::class);
     Route::delete('/{user:uuid}/professions', Profession\DestroyController::class);
 });
 
