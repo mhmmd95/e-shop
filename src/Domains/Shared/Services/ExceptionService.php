@@ -14,6 +14,7 @@ use Illuminate\Auth\AuthenticationException;
 use JustSteveKing\StatusCode\Http;
 use Illuminate\Http\JsonResponse;
 use Infrastructure\ApiResponse;
+use Exception;
 use Throwable;
 
 final class ExceptionService {
@@ -42,6 +43,9 @@ final class ExceptionService {
             return $this->handle_error(null, $exception->getMessage());
 
         if ($exception instanceof UserHasNoProfessionException)
+            return $this->handle_error(null, $exception->getMessage());
+
+        if ($exception instanceof Exception)
             return $this->handle_error(null, $exception->getMessage());
     }
 }
