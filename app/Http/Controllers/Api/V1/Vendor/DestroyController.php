@@ -4,8 +4,6 @@ declare (strict_types = 1);
 
 namespace App\Http\Controllers\Api\V1\Vendor;
 
-use Domains\Vendor\Actions\Vendor\CreateVendor;
-use Domains\Shared\Factories\ProfessionFactory;
 use App\Http\Controllers\Controller;
 use Domains\Vendor\Actions\Vendor\DestroyVendor;
 use Domains\Vendor\Models\Vendor;
