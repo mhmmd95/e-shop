@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace Domains\Vendor\Models;
 
+use Database\Factories\VendorFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Domains\Shared\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -32,5 +33,10 @@ class Vendor extends Model
     public function businesses(): HasMany
     {
         return $this->hasMany(Business::class);
+    }
+
+    protected static function newFactory(): VendorFactory
+    {
+        return VendorFactory::new();
     }
 }

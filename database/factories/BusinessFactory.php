@@ -4,19 +4,20 @@ declare (strict_types = 1);
 
 namespace Database\Factories;
 
-use Domains\Shared\Models\Profession;
+use Domains\Vendor\Models\Business;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProfessionFactory extends Factory
+class BusinessFactory extends Factory
 {
-    protected $model = Profession::class;
+
+    protected $model = Business::class;
 
     public function definition(): array
     {
         return [
             'uuid' => fake()->uuid(),
-            'title' => fake()->jobTitle(),
-            'description' => fake()->sentence(7),
+            'name' => fake()->jobTitle(),
+            'description' => fake()->sentence(13),
         ];
     }
 }

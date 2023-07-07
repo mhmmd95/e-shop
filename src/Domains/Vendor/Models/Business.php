@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace Domains\Vendor\Models;
 
+use Database\Factories\BusinessFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Domains\Shared\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -27,5 +28,10 @@ class Business extends Model
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
+    }
+
+    protected static function newFactory(): BusinessFactory
+    {
+        return BusinessFactory::new();
     }
 }

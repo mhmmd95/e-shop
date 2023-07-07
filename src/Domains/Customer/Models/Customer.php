@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace Domains\Customer\Models;
 
+use Database\Factories\CustomerFactory;
 use Domains\Shared\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,4 +28,9 @@ final class Customer extends Model
     protected $hidden = [
         'id'
     ];
+
+    protected static function newFactory()
+    {
+        return CustomerFactory::new();
+    }
 }
